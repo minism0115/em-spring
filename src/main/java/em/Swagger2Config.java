@@ -1,4 +1,4 @@
-package em.profile;
+package em;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -19,8 +19,8 @@ public class Swagger2Config {
     @Bean
     public OpenAPI springShopOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Leezy Spring API")
-                        .description("Leezy Spring API 명세서입니다.")
+                .info(new Info().title("Spring API")
+                        .description("Spring API 명세서입니다.")
                         .version("v0.0.1")
                 );
     }
