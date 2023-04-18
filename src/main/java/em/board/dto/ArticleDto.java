@@ -4,8 +4,6 @@ import em.board.domain.Article;
 import em.board.domain.UserAccount;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 /**
  * A DTO for the {@link em.board.domain.Article} entity
  */
@@ -16,16 +14,16 @@ public class ArticleDto {
     private final String title;
     private final String content;
     private final String hashtag;
-    private final LocalDateTime createdAt;
+    private final String createdAt;
     private final String createdBy;
-    private final LocalDateTime modifiedAt;
-    private final String modifiedBy;
+    private final String updatedAt;
+    private final String updatedBy;
 
     public static ArticleDto of(UserAccountDto userAccountDto, String title, String content, String hashtag) {
         return new ArticleDto(null, userAccountDto, title, content, hashtag, null, null, null, null);
     }
 
-    public static ArticleDto of(Long id, UserAccountDto userAccountDto, String title, String content, String hashtag, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+    public static ArticleDto of(Long id, UserAccountDto userAccountDto, String title, String content, String hashtag, String createdAt, String createdBy, String modifiedAt, String modifiedBy) {
         return new ArticleDto(id, userAccountDto, title, content, hashtag, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
@@ -38,8 +36,8 @@ public class ArticleDto {
                 entity.getHashtag(),
                 entity.getCreatedAt(),
                 entity.getCreatedBy(),
-                entity.getModifiedAt(),
-                entity.getModifiedBy()
+                entity.getUpdatedAt(),
+                entity.getUpdatedBy()
         );
     }
 

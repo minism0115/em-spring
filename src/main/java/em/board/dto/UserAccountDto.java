@@ -3,8 +3,6 @@ package em.board.dto;
 import em.board.domain.UserAccount;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
 public class UserAccountDto {
     private final String userId;
@@ -12,16 +10,16 @@ public class UserAccountDto {
     private final String email;
     private final String nickname;
     private final String memo;
-    private final LocalDateTime createdAt;
+    private final String createdAt;
     private final String createdBy;
-    private final LocalDateTime modifiedAt;
-    private final String modifiedBy;
+    private final String updatedAt;
+    private final String updatedBy;
 
     public static UserAccountDto of(String userId, String userPassword, String email, String nickname, String memo) {
         return new UserAccountDto(userId, userPassword, email, nickname, memo, null, null, null, null);
     }
 
-    public static UserAccountDto of(String userId, String userPassword, String email, String nickname, String memo, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+    public static UserAccountDto of(String userId, String userPassword, String email, String nickname, String memo, String createdAt, String createdBy, String modifiedAt, String modifiedBy) {
         return new UserAccountDto(userId, userPassword, email, nickname, memo, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
@@ -34,8 +32,8 @@ public class UserAccountDto {
                 entity.getMemo(),
                 entity.getCreatedAt(),
                 entity.getCreatedBy(),
-                entity.getModifiedAt(),
-                entity.getModifiedBy()
+                entity.getUpdatedAt(),
+                entity.getUpdatedBy()
         );
     }
 

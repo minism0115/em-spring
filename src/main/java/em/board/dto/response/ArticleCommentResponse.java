@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 public class ArticleCommentResponse implements Serializable {
     private final Long id;
     private final String content;
-    private final LocalDateTime createdAt;
+    private final String createdAt;
     private final String email;
     private final String nickname;
     private final String userId;
 
-    public static ArticleCommentResponse of(Long id, String content, LocalDateTime createdAt, String email, String nickname, String userId) {
+    public static ArticleCommentResponse of(Long id, String content, String createdAt, String email, String nickname, String userId) {
         return new ArticleCommentResponse(id, content, createdAt, email, nickname, userId);
     }
 

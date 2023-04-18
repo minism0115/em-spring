@@ -9,10 +9,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @ToString
@@ -20,22 +19,31 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class AuditingFields {
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt; // 생성일시
+    private String createdAt; // 생성일시
 
     @CreatedBy
     @Column(nullable = false, updatable = false, length = 100)
     private String createdBy; // 생성자
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @LastModifiedDate
     @Column(nullable = false)
-    private LocalDateTime modifiedAt; // 수정일시
+    private String updatedAt; // 수정일시
 
     @LastModifiedBy
     @Column(nullable = false, length = 100)
-    private String modifiedBy; // 수정자
+    private String updatedBy; // 수정자
+
+    @PrePersist
+    public void onPrePersist(){
+        this.createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.updatedAt = createdAt;
+    }
+
+    @PreUpdate
+    public void onPreUpdate(){
+        this.updatedAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
 
 }

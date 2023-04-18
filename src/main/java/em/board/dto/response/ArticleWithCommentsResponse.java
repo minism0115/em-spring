@@ -15,13 +15,13 @@ public class ArticleWithCommentsResponse implements Serializable {
     private final String title;
     private final String content;
     private final String hashtag;
-    private final LocalDateTime createdAt;
+    private final String createdAt;
     private final String email;
     private final String nickname;
     private final String userId;
     private final Set<ArticleCommentResponse> articleCommentsResponse;
 
-    public static ArticleWithCommentsResponse of(Long id, String title, String content, String hashtag, LocalDateTime createdAt, String email, String nickname, String userId, Set<ArticleCommentResponse> articleCommentResponses) {
+    public static ArticleWithCommentsResponse of(Long id, String title, String content, String hashtag, String createdAt, String email, String nickname, String userId, Set<ArticleCommentResponse> articleCommentResponses) {
         return new ArticleWithCommentsResponse(id, title, content, hashtag, createdAt, email, nickname, userId, articleCommentResponses);
     }
 

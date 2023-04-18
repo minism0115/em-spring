@@ -1,6 +1,10 @@
 package em.equipment.domain;
 
+import em.board.domain.AuditingFields;
+import em.company.domain.Company;
+import em.equipment.dto.UpdateEquipmentRequest;
 import lombok.*;
+import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,10 +20,12 @@ import java.io.Serializable;
         }
 )
 @IdClass(Equipment.EquipmentId.class)
-public class Equipment {
+public class Equipment extends AuditingFields {
 
     @Id
     @GeneratedValue
+    @Column(name = "equipment_id")
+    @Comment("ID")
     private Long id;
 
     @Id
@@ -27,10 +33,16 @@ public class Equipment {
 
     private String modeName;
 
-    private String companyId;
+    @OneToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     public EquipmentId getCompositeId(){
         return EquipmentId.of(id, version);
+    }
+
+    public void update(UpdateEquipmentRequest request) {
+        this.modeName = request.getModeName();
     }
 
     @Embeddable

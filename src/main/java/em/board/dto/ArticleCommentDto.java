@@ -5,8 +5,6 @@ import em.board.domain.ArticleComment;
 import em.board.domain.UserAccount;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 /**
  * A DTO for the {@link em.board.domain.ArticleComment} entity
  */
@@ -16,16 +14,16 @@ public class ArticleCommentDto {
     private final Long articleId;
     private final UserAccountDto userAccountDto;
     private final String content;
-    private final LocalDateTime createdAt;
+    private final String createdAt;
     private final String createdBy;
-    private final LocalDateTime modifiedAt;
-    private final String modifiedBy;
+    private final String updatedAt;
+    private final String updatedBy;
 
     public static ArticleCommentDto of(Long articleId, UserAccountDto userAccountDto, String content) {
         return new ArticleCommentDto(null, articleId, userAccountDto, content, null, null, null, null);
     }
 
-    public static ArticleCommentDto of(Long id, Long articleId, UserAccountDto userAccountDto, String content, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+    public static ArticleCommentDto of(Long id, Long articleId, UserAccountDto userAccountDto, String content, String createdAt, String createdBy, String modifiedAt, String modifiedBy) {
         return new ArticleCommentDto(id, articleId, userAccountDto, content, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
@@ -37,8 +35,8 @@ public class ArticleCommentDto {
                 entity.getContent(),
                 entity.getCreatedAt(),
                 entity.getCreatedBy(),
-                entity.getModifiedAt(),
-                entity.getModifiedBy()
+                entity.getUpdatedAt(),
+                entity.getUpdatedBy()
         );
     }
 

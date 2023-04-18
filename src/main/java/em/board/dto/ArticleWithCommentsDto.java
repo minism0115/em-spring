@@ -3,8 +3,6 @@ package em.board.dto;
 import em.board.domain.Article;
 import lombok.Data;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,12 +15,12 @@ public class ArticleWithCommentsDto {
     private final String title;
     private final String content;
     private final String hashtag;
-    private final LocalDateTime createdAt;
+    private final String createdAt;
     private final String createdBy;
-    private final LocalDateTime modifiedAt;
-    private final String modifiedBy;
+    private final String updatedAt;
+    private final String updatedBy;
 
-    public static ArticleWithCommentsDto of(Long id, UserAccountDto userAccountDto, Set<ArticleCommentDto> articleCommentDtos, String title, String content, String hashtag, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+    public static ArticleWithCommentsDto of(Long id, UserAccountDto userAccountDto, Set<ArticleCommentDto> articleCommentDtos, String title, String content, String hashtag, String createdAt, String createdBy, String modifiedAt, String modifiedBy) {
         return new ArticleWithCommentsDto(id, userAccountDto, articleCommentDtos, title, content, hashtag, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
@@ -38,8 +36,8 @@ public class ArticleWithCommentsDto {
                 entity.getHashtag(),
                 entity.getCreatedAt(),
                 entity.getCreatedBy(),
-                entity.getModifiedAt(),
-                entity.getModifiedBy()
+                entity.getUpdatedAt(),
+                entity.getUpdatedBy()
         );
     }
 

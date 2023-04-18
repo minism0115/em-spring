@@ -26,7 +26,7 @@ public interface ArticleCommentRepository extends
         bindings.excludeUnlistedProperties(true);
         bindings.including(root.content, root.createdAt, root.createdBy);
         bindings.bind(root.content).first(StringExpression::containsIgnoreCase);
-        bindings.bind(root.createdAt).first(DateTimeExpression::eq);
+//        bindings.bind(root.createdAt).first(DateTimeExpression::eq);
         bindings.bind(root.createdBy).first(StringExpression::containsIgnoreCase);
     }
 

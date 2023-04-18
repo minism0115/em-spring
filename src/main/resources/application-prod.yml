@@ -1,17 +1,17 @@
-# Oracle DB 세팅
-spring:
-  datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@192.168.0.100:1521/xe
-    username: C##D2INNO
-    password: d2inno12#
-  jpa:
-    show-sql: true        # Hibernate가 DB에 날리는 모든 쿼리를 보여준다.
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true  # 보여지는 쿼리를 예쁘게 포매팅
-  sql:
-    init:
-      mode: always        # 모든 데이터베이스에 sql 스크립트를 동작시킨다.
+## Oracle DB 세팅
+#spring:
+#  datasource:
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    url: jdbc:oracle:thin:@192.168.0.100:1521/xe
+#    username: C##D2INNO
+#    password: d2inno12#
+#  jpa:
+#    show-sql: true        # Hibernate가 DB에 날리는 모든 쿼리를 보여준다.
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        format_sql: true  # 보여지는 쿼리를 예쁘게 포매팅
+#  sql:
+#    init:
+#      mode: always        # 모든 데이터베이스에 sql 스크립트를 동작시킨다.
