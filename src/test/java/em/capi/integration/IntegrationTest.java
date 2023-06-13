@@ -3,11 +3,16 @@ package em.capi.integration;
 import em.capi.domain.Connection;
 import em.capi.domain.Module;
 import em.capi.domain.Session;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -65,6 +70,30 @@ public class IntegrationTest {
             String result = new String(decrypted);
 
             assertThat(result).isEqualTo("12345");
+        }
+    }
+
+    @Test
+    @DisplayName("HttpUrlConnection 사용한 테스트")
+    public void testCommunicationUsingHttpUrlConnection() throws IOException {
+        URL url = new URL("http://localhost:30080/modules");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        int responseCode = connection.getResponseCode();
+        System.out.println("Response Code: " + responseCode);
+    }
+    @Test
+    @DisplayName("OkHttp 사용한 테스트")
+    public void testCommunicationUsingOkHttp() throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("http://localhost:30080/modules")
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            int responseCode = response.code();
+            System.out.println("Response Code: " + responseCode);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

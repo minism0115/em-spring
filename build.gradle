@@ -61,6 +61,9 @@ dependencies {
 
 	// CMS
 	implementation files('libs/java-rest-capi-1.0.0.jar')
+
+	// OkHttp
+	implementation 'com.squareup.okhttp3:okhttp:4.9.1'
 }
 
 tasks.named('test') {
