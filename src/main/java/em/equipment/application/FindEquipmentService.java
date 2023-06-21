@@ -7,6 +7,7 @@ import em.equipment.infrastructure.CustomEquipmentRepository;
 import em.equipment.infrastructure.EquipmentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -36,7 +37,7 @@ public class FindEquipmentService {
         }
     }
 
-
+    @Cacheable("equipment")
     public Page<EquipmentResponse> findEquipments(String modeName, Pageable pageable) {
         Page<Equipment> equipments = customEquipmentRepository.findEquipments(modeName, pageable);
         List<EquipmentResponse> collect = equipments.stream()

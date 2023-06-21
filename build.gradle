@@ -64,6 +64,9 @@ dependencies {
 
 	// OkHttp
 	implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+
+	// Cache
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
 }
 
 tasks.named('test') {
