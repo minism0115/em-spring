@@ -24,4 +24,28 @@ public class Swagger2Config {
                         .version("v0.0.1")
                 );
     }
+
+    // authorization test
+//    @Bean
+//    public GroupedOpenApi headerApi(){
+//        return GroupedOpenApi.builder()
+//                .pathsToMatch("/api/**")
+//                .group("auth-header")
+//                .addOpenApiCustomiser(customHeaderOpenApiCustomiser())
+//                .build();
+//    }
+
+    // 모든 API에 header 강제
+//    @Bean
+//    public OpenApiCustomiser customHeaderOpenApiCustomiser() {
+//        Parameter userToken = new Parameter()
+//                .name("token")
+//                .in("header")
+//                .required(true)
+//                .schema(new StringSchema());
+//        return openApi -> openApi.getPaths().values().forEach(
+//                operation -> operation
+//                        .addParametersItem(userToken)
+//        );
+//    }
 }
