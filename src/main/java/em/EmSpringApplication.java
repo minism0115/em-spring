@@ -10,10 +10,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @ConfigurationPropertiesScan
 @SpringBootApplication
 @EnableCaching
-public class LeezySpringApplication {
+public class EmSpringApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LeezySpringApplication.class, args);
+		SpringApplication.run(EmSpringApplication.class, args);
 	}
 
 }

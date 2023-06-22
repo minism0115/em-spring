@@ -101,6 +101,6 @@ clean {
 // Heroku 설정
 jar {
 	manifest {
-		attributes('Main-Class': 'em.LeezySpringApplication')
+		attributes('Main-Class': 'em.EmSpringApplication')
 	}
 }

@@ -6,7 +6,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("prod")
-class LeezySpringApplicationTests {
+class EmSpringApplicationTests {
 
 	@Test
 	void contextLoads() {
