@@ -1,6 +1,8 @@
 package em.company.domain;
 
+import em.common.AuditingFields;
 import lombok.*;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,7 @@ import javax.persistence.Id;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Company {
+public class Company extends AuditingFields implements Persistable<Long> {
 
     @Id
     @GeneratedValue
@@ -20,4 +22,9 @@ public class Company {
     private Long id;
 
     private String companyName;
+
+    @Override
+    public boolean isNew() {
+        return getCreatedAt() == null;
+    }
 }

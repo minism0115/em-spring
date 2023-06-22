@@ -1,10 +1,11 @@
 package em.equipment.domain;
 
-import em.board.domain.AuditingFields;
+import em.common.AuditingFields;
 import em.company.domain.Company;
 import em.equipment.dto.UpdateEquipmentRequest;
 import lombok.*;
 import org.hibernate.annotations.Comment;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,7 +21,7 @@ import java.io.Serializable;
         }
 )
 @IdClass(Equipment.EquipmentId.class)
-public class Equipment extends AuditingFields {
+public class Equipment extends AuditingFields implements Persistable<Long> {
 
     @Id
     @GeneratedValue
@@ -43,6 +44,11 @@ public class Equipment extends AuditingFields {
 
     public void update(UpdateEquipmentRequest request) {
         this.modeName = request.getModeName();
+    }
+
+    @Override
+    public boolean isNew() {
+        return getCreatedAt() == null;
     }
 
     @Embeddable

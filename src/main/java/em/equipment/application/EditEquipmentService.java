@@ -1,6 +1,5 @@
 package em.equipment.application;
 
-import em.company.domain.Company;
 import em.company.infrastructure.CompanyRepository;
 import em.equipment.domain.Equipment;
 import em.equipment.dto.CreateEquipmentRequest;
@@ -32,13 +31,13 @@ public class EditEquipmentService {
         if(lastOne != null){
             id = lastOne.getId() + 1L;
         }
-        Company findCompany = companyRepository.findById(request.getCompanyId())
-                .orElseThrow(() -> new EntityNotFoundException("해당하는 업체가 존재하지 않습니다."));
+//        Company findCompany = companyRepository.findById(request.getCompanyId())
+//                .orElseThrow(() -> new EntityNotFoundException("해당하는 업체가 존재하지 않습니다."));
         Equipment equipment = Equipment.builder()
                 .id(id)
                 .version(1)
                 .modeName(request.getModeName())
-                .company(findCompany)
+//                .company(findCompany)
                 .build();
         return equipmentRepository.save(equipment);
     }

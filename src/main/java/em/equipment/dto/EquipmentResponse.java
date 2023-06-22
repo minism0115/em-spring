@@ -22,7 +22,7 @@ public class EquipmentResponse {
         id = equipment.getId();
         version = equipment.getVersion();
         modeName = equipment.getModeName();
-        companyId = equipment.getCompany().getId();
-        companyName = equipment.getCompany().getCompanyName();
+//        companyId = equipment.getCompany().getId();
+//        companyName = equipment.getCompany().getCompanyName();
     }
 }
