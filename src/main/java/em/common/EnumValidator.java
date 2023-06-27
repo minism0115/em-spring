@@ -11,7 +11,7 @@ public class EnumValidator implements ConstraintValidator<EnumValid, String > {
 
     @Override
     public void initialize(EnumValid constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
+        this.enumValid = constraintAnnotation;
     }
 
     @Override

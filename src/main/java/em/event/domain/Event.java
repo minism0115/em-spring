@@ -25,6 +25,9 @@ public class Event extends AuditingFields implements Persistable<String> {
     @Comment("ID")
     private String id;
 
+    @Comment("이벤트명")
+    private String eventName;
+
     @Override
     public boolean isNew() {
         return getCreatedAt() == null;
