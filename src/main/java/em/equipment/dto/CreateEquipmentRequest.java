@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 public class CreateEquipmentRequest {
 
     @NotBlank
-    private String modeName;
+    private String equipmentName;
 
 //    @NotNull
     private Long companyId;

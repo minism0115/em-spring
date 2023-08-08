@@ -17,7 +17,7 @@ import java.io.Serializable;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"modeName", "version"})
+                @UniqueConstraint(columnNames = {"equipmentName", "version"})
         }
 )
 @IdClass(Equipment.EquipmentId.class)
@@ -32,7 +32,7 @@ public class Equipment extends AuditingFields implements Persistable<Long> {
     @Id
     private int version;
 
-    private String modeName;
+    private String equipmentName;
 
     @OneToOne
     @JoinColumn(name = "company_id")
@@ -43,7 +43,7 @@ public class Equipment extends AuditingFields implements Persistable<Long> {
     }
 
     public void update(UpdateEquipmentRequest request) {
-        this.modeName = request.getModeName();
+        this.equipmentName = request.getEquipmentName();
     }
 
     @Override

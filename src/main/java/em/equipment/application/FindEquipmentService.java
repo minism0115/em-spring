@@ -3,7 +3,6 @@ package em.equipment.application;
 import em.equipment.domain.Equipment;
 import em.equipment.domain.Equipment.EquipmentId;
 import em.equipment.dto.EquipmentResponse;
-import em.equipment.infrastructure.CustomEquipmentRepository;
 import em.equipment.infrastructure.EquipmentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +23,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FindEquipmentService {
 
-    private final CustomEquipmentRepository customEquipmentRepository;
     private final EquipmentRepository equipmentRepository;
 
     public EquipmentResponse findEquipment(Long equipmentId, Integer equipmentVersion){
@@ -39,7 +37,7 @@ public class FindEquipmentService {
 
     @Cacheable("equipment")
     public Page<EquipmentResponse> findEquipments(String modeName, Pageable pageable) {
-        Page<Equipment> equipments = customEquipmentRepository.findEquipments(modeName, pageable);
+        Page<Equipment> equipments = equipmentRepository.findEquipments(modeName, pageable);
         List<EquipmentResponse> collect = equipments.stream()
                 .map(EquipmentResponse::new)
                 .collect(Collectors.toList());

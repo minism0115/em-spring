@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
-    List<Equipment> findByModeName(String modeName);
+public interface EquipmentRepository extends JpaRepository<Equipment, Long>, EquipmentRepositoryCustom {
+    List<Equipment> findByEquipmentName(String equipmentName);
 
     Equipment findById(Equipment.EquipmentId equipmentId);
 

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.ConstraintViolationException;
@@ -24,8 +25,8 @@ public class EditEquipmentService {
     private final CompanyRepository companyRepository;
 
     @Transactional
-    public Equipment createEquipment(CreateEquipmentRequest request){
-        validateDuplicationOfModeName(request.getModeName());
+    public void createEquipment(CreateEquipmentRequest request){
+        validateDuplicationOfEquipmentName(request.getEquipmentName());
         Equipment lastOne = equipmentRepository.findOneByOrderByIdDesc();
         Long id = 1L;
         if(lastOne != null){
@@ -36,14 +37,14 @@ public class EditEquipmentService {
         Equipment equipment = Equipment.builder()
                 .id(id)
                 .version(1)
-                .modeName(request.getModeName())
+                .equipmentName(request.getEquipmentName())
 //                .company(findCompany)
                 .build();
-        return equipmentRepository.save(equipment);
+        equipmentRepository.save(equipment);
     }
 
-    private void validateDuplicationOfModeName(String modeName) {
-        List<Equipment> equipments = equipmentRepository.findByModeName(modeName);
+    private void validateDuplicationOfEquipmentName(String equipmentName) {
+        List<Equipment> equipments = equipmentRepository.findByEquipmentName(equipmentName);
         if(!equipments.isEmpty()){
             throw new ConstraintViolationException("이미 존재하는 장비명입니다.", null);
         }
@@ -58,5 +59,23 @@ public class EditEquipmentService {
         } else {
             throw new EntityNotFoundException("해당하는 장비가 존재하지 않습니다.");
         }
+    }
+
+    public void createEquipmentWithFiles(CreateEquipmentRequest request, List<MultipartFile> files) {
+        validateDuplicationOfEquipmentName(request.getEquipmentName());
+        Equipment lastOne = equipmentRepository.findOneByOrderByIdDesc();
+        Long id = 1L;
+        if(lastOne != null){
+            id = lastOne.getId() + 1L;
+        }
+//        Company findCompany = companyRepository.findById(request.getCompanyId())
+//                .orElseThrow(() -> new EntityNotFoundException("해당하는 업체가 존재하지 않습니다."));
+        Equipment equipment = Equipment.builder()
+                .id(id)
+                .version(1)
+                .equipmentName(request.getEquipmentName())
+//                .company(findCompany)
+                .build();
+        equipmentRepository.save(equipment);
     }
 }

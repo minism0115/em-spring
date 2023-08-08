@@ -21,7 +21,7 @@ public class EquipmentResponse {
     public EquipmentResponse(Equipment equipment){
         id = equipment.getId();
         version = equipment.getVersion();
-        modeName = equipment.getModeName();
+        modeName = equipment.getEquipmentName();
 //        companyId = equipment.getCompany().getId();
 //        companyName = equipment.getCompany().getCompanyName();
     }

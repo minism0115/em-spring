@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class UpdateEquipmentRequest {
 
-    private String modeName;
+    private String equipmentName;
 }

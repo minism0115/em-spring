@@ -17,6 +17,12 @@ spring:
         max-page-size: 2000
         # show_sql: true
         format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+file:
+  root-path: C:/file-test
 logging.level:
   org.hibernate.SQL: debug
 # org.hibernate.type: trace
