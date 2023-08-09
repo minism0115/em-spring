@@ -28,7 +28,6 @@ public class EquipmentRepositoryImpl implements EquipmentRepositoryCustom {
         JPAQuery<Equipment> query = queryFactory
                 .selectFrom(equipment)
                 .where(containsModeName(modeName))
-                .orderBy(equipment.createdAt.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize());
 
@@ -40,7 +39,7 @@ public class EquipmentRepositoryImpl implements EquipmentRepositoryCustom {
 
         List<Equipment> result = query.fetch();
 
-        JPAQuery<Long> countQuery = query
+        JPAQuery<Long> countQuery = queryFactory
                 .select(equipment.count())
                 .from(equipment)
                 .where(containsModeName(modeName));
