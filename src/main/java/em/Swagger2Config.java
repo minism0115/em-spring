@@ -2,7 +2,10 @@ package em;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.media.StringSchema;
+import io.swagger.v3.oas.models.parameters.Parameter;
 import org.springdoc.core.GroupedOpenApi;
+import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,26 +29,26 @@ public class Swagger2Config {
     }
 
     // authorization test
-//    @Bean
-//    public GroupedOpenApi headerApi(){
-//        return GroupedOpenApi.builder()
-//                .pathsToMatch("/api/**")
-//                .group("auth-header")
-//                .addOpenApiCustomiser(customHeaderOpenApiCustomiser())
-//                .build();
-//    }
+    @Bean
+    public GroupedOpenApi headerApi(){
+        return GroupedOpenApi.builder()
+                .pathsToMatch("/api/**")
+                .group("auth-header")
+                .addOpenApiCustomiser(customHeaderOpenApiCustomiser())
+                .build();
+    }
 
     // 모든 API에 header 강제
-//    @Bean
-//    public OpenApiCustomiser customHeaderOpenApiCustomiser() {
-//        Parameter userToken = new Parameter()
-//                .name("token")
-//                .in("header")
-//                .required(true)
-//                .schema(new StringSchema());
-//        return openApi -> openApi.getPaths().values().forEach(
-//                operation -> operation
-//                        .addParametersItem(userToken)
-//        );
-//    }
+    @Bean
+    public OpenApiCustomiser customHeaderOpenApiCustomiser() {
+        Parameter token = new Parameter()
+                .name("id")
+                .in("header")
+                .required(true)
+                .schema(new StringSchema());
+        return openApi -> openApi.getPaths().values().forEach(
+                operation -> operation
+                        .addParametersItem(token)
+        );
+    }
 }
