@@ -4,7 +4,8 @@ import lombok.Getter;
 
 public enum EventName {
 
-    EXPORT_REQUESTED("EXPORT_REQUESTED");
+    REQUEST("REQUEST"),
+    RESPONSE("RESPONSE");
 
     @Getter
     private final String value;

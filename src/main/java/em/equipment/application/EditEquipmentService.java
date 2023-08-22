@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -27,15 +28,10 @@ public class EditEquipmentService {
     @Transactional
     public void createEquipment(CreateEquipmentRequest request){
         validateDuplicationOfEquipmentName(request.getEquipmentName());
-        Equipment lastOne = equipmentRepository.findOneByOrderByIdDesc();
-        Long id = 1L;
-        if(lastOne != null){
-            id = lastOne.getId() + 1L;
-        }
 //        Company findCompany = companyRepository.findById(request.getCompanyId())
 //                .orElseThrow(() -> new EntityNotFoundException("해당하는 업체가 존재하지 않습니다."));
         Equipment equipment = Equipment.builder()
-                .id(id)
+                .id(UUID.randomUUID().toString())
                 .version(1)
                 .equipmentName(request.getEquipmentName())
 //                .company(findCompany)
@@ -51,7 +47,7 @@ public class EditEquipmentService {
     }
 
     @Transactional
-    public void updateEquipment(Long equipmentId, Integer equipmentVersion, UpdateEquipmentRequest request) {
+    public void updateEquipment(String equipmentId, Integer equipmentVersion, UpdateEquipmentRequest request) {
         Equipment.EquipmentId id = Equipment.EquipmentId.of(equipmentId, equipmentVersion);
         Equipment foundOne = equipmentRepository.findById(id);
         if(foundOne != null) {
@@ -63,15 +59,15 @@ public class EditEquipmentService {
 
     public void createEquipmentWithFiles(CreateEquipmentRequest request, List<MultipartFile> files) {
         validateDuplicationOfEquipmentName(request.getEquipmentName());
-        Equipment lastOne = equipmentRepository.findOneByOrderByIdDesc();
-        Long id = 1L;
-        if(lastOne != null){
-            id = lastOne.getId() + 1L;
-        }
+//        Equipment lastOne = equipmentRepository.findOneByOrderByIdDesc();
+//        Long id = 1L;
+//        if(lastOne != null){
+//            id = lastOne.getId() + 1L;
+//        }
 //        Company findCompany = companyRepository.findById(request.getCompanyId())
 //                .orElseThrow(() -> new EntityNotFoundException("해당하는 업체가 존재하지 않습니다."));
         Equipment equipment = Equipment.builder()
-                .id(id)
+                .id(UUID.randomUUID().toString())
                 .version(1)
                 .equipmentName(request.getEquipmentName())
 //                .company(findCompany)

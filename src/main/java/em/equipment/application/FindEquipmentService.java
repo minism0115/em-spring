@@ -25,7 +25,7 @@ public class FindEquipmentService {
 
     private final EquipmentRepository equipmentRepository;
 
-    public EquipmentResponse findEquipment(Long equipmentId, Integer equipmentVersion){
+    public EquipmentResponse findEquipment(String equipmentId, Integer equipmentVersion){
         EquipmentId id = EquipmentId.of(equipmentId, equipmentVersion);
         Equipment foundOne = equipmentRepository.findById(id);
         if(foundOne != null) {
@@ -36,8 +36,8 @@ public class FindEquipmentService {
     }
 
     @Cacheable("equipment")
-    public Page<EquipmentResponse> findEquipments(String modeName, Pageable pageable) {
-        Page<Equipment> equipments = equipmentRepository.findEquipments(modeName, pageable);
+    public Page<EquipmentResponse> findEquipments(String equipmentName, Pageable pageable) {
+        Page<Equipment> equipments = equipmentRepository.findEquipments(equipmentName, pageable);
         List<EquipmentResponse> collect = equipments.stream()
                 .map(EquipmentResponse::new)
                 .collect(Collectors.toList());

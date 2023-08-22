@@ -1,5 +1,6 @@
 package em.equipment.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import em.common.AuditingFields;
 import em.company.domain.Company;
 import em.equipment.dto.UpdateEquipmentRequest;
@@ -21,20 +22,20 @@ import java.io.Serializable;
         }
 )
 @IdClass(Equipment.EquipmentId.class)
-public class Equipment extends AuditingFields implements Persistable<Long> {
+public class Equipment extends AuditingFields implements Persistable<String> {
 
     @Id
-    @GeneratedValue
-    @Column(name = "equipment_id")
+    @Column(name = "equipment_id", columnDefinition = "VARCHAR2(36)")
     @Comment("ID")
-    private Long id;
+    private String id;
 
     @Id
     private int version;
 
     private String equipmentName;
 
-    @OneToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;
 
@@ -57,7 +58,7 @@ public class Equipment extends AuditingFields implements Persistable<Long> {
     @RequiredArgsConstructor(staticName = "of")
     public static class EquipmentId implements Serializable {
         @NonNull
-        private Long id;
+        private String id;
         @NonNull
         private int version;
     }

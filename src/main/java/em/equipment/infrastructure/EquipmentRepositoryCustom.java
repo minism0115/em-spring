@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface EquipmentRepositoryCustom {
 
-    Page<Equipment> findEquipments(String modeName, Pageable pageable);
+    Page<Equipment> findEquipments(String equipmentName, Pageable pageable);
 }

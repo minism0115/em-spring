@@ -46,7 +46,7 @@ public class EditEquipmentController {
     @Operation(summary = "단건 수정 API")
     @PutMapping("/equipmentId/equipmentVersion")
     @CacheEvict(value = "equipment", allEntries = true)
-    public ResponseEntity updateEquipment(@PathVariable("equipmentId") Long equipmentId,
+    public ResponseEntity updateEquipment(@PathVariable("equipmentId") String equipmentId,
                                           @PathVariable("equipmentVersion") Integer equipmentVersion,
                                           @RequestBody @Valid UpdateEquipmentRequest request){
         editEquipmentService.updateEquipment(equipmentId, equipmentVersion, request);

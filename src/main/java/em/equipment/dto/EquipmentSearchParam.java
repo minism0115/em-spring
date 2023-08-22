@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EquipmentSearchParam {
-    private String modeName;
+    private String equipmentName;
 }

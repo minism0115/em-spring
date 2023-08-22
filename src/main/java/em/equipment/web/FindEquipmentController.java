@@ -26,7 +26,7 @@ public class FindEquipmentController {
     @Operation(summary = "")
     @GetMapping(value = "/{equipmentId}/{equipmentVersion}")
     public ResponseEntity<EquipmentResponse> findEquipment(
-            @PathVariable("equipmentId") Long equipmentId,
+            @PathVariable("equipmentId") String equipmentId,
             @PathVariable("equipmentVersion") Integer equipmentVersion){
         EquipmentResponse response = findEquipmentService.findEquipment(equipmentId, equipmentVersion);
         return new ResponseEntity(response, HttpStatus.OK);
@@ -35,9 +35,9 @@ public class FindEquipmentController {
     @Operation(summary = "")
     @GetMapping
     public ResponseEntity<Page<EquipmentResponse>> findEquipments(
-            @RequestParam(required = false) String modeName,
+            @RequestParam(required = false) String equipmentName,
             @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC)Pageable pageable){
-        Page<EquipmentResponse> responses = findEquipmentService.findEquipments(modeName, pageable);
+        Page<EquipmentResponse> responses = findEquipmentService.findEquipments(equipmentName, pageable);
         return new ResponseEntity(responses, HttpStatus.OK);
     }
 }

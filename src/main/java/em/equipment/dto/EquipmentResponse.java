@@ -8,20 +8,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class EquipmentResponse {
 
-    private Long id;
+    private String equipmentId;
 
     private int version;
 
-    private String modeName;
+    private String equipmentName;
 
     private Long companyId;
 
     private String companyName;
 
     public EquipmentResponse(Equipment equipment){
-        id = equipment.getId();
+        equipmentId = equipment.getId();
         version = equipment.getVersion();
-        modeName = equipment.getEquipmentName();
+        equipmentName = equipment.getEquipmentName();
 //        companyId = equipment.getCompany().getId();
 //        companyName = equipment.getCompany().getCompanyName();
     }
