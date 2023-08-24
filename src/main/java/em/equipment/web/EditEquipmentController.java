@@ -30,6 +30,7 @@ public class EditEquipmentController {
     @PostMapping
     @CacheEvict(value = "equipment", allEntries = true)
     public ResponseEntity createEquipment(@RequestBody @Valid CreateEquipmentRequest request){
+        log.debug(request.getEquipmentName());
         editEquipmentService.createEquipment(request);
         return new ResponseEntity(HttpStatus.OK);
     }

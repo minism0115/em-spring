@@ -15,10 +15,12 @@ import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
-
+/*
+    영후님이 작성한 클래스!
+ */
 //@Component
 //@Order(2)
-public class octetStreamRequestBodyDecryptFilter implements Filter {
+public class OctetStreamRequestBodyDecryptFilter implements Filter {
     /*
        octet-stream 요청에 대해서 filtering하는 클래스.
        content-type이 application/octet-stream 일 경우 이를 application/json 으로 변경,
