@@ -4,11 +4,12 @@ import em.equipment.domain.Equipment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface EquipmentRepository extends JpaRepository<Equipment, Long>, EquipmentRepositoryCustom {
+public interface EquipmentRepository extends JpaRepository<Equipment, Equipment.EquipmentId>, EquipmentRepositoryCustom {
     List<Equipment> findByEquipmentName(String equipmentName);
 
-    Equipment findById(Equipment.EquipmentId equipmentId);
+    Optional<Equipment> findById(Equipment.EquipmentId equipmentId);
 
     Equipment findOneByOrderByIdDesc();
 }

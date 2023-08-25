@@ -65,12 +65,9 @@ public class EditEquipmentService {
     @Transactional
     public void updateEquipment(String equipmentId, Integer equipmentVersion, UpdateEquipmentRequest request) {
         Equipment.EquipmentId id = Equipment.EquipmentId.of(equipmentId, equipmentVersion);
-        Equipment foundOne = equipmentRepository.findById(id);
-        if(foundOne != null) {
-            foundOne.update(request);
-        } else {
-            throw new EntityNotFoundException("해당하는 장비가 존재하지 않습니다.");
-        }
+        Equipment foundOne = equipmentRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("해당하는 장비가 존재하지 않습니다."));
+        foundOne.update(request);
     }
 
     public void createEquipmentWithFiles(CreateEquipmentRequest request, List<MultipartFile> files) {

@@ -29,7 +29,7 @@ public class EditEquipmentController {
     @Operation(summary = "단건 등록 API")
     @PostMapping
     @CacheEvict(value = "equipment", allEntries = true)
-    public ResponseEntity createEquipment(@RequestBody @Valid CreateEquipmentRequest request){
+    public ResponseEntity createEquipment(@Valid @RequestBody CreateEquipmentRequest request){
         log.debug(request.getEquipmentName());
         editEquipmentService.createEquipment(request);
         return new ResponseEntity(HttpStatus.OK);
@@ -38,18 +38,18 @@ public class EditEquipmentController {
     @Operation(summary = "단건 등록 API - 첨부파일")
     @PostMapping(value = {"/file"}, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @CacheEvict(value = "equipment", allEntries = true)
-    public ResponseEntity createEquipmentWithFiles(@RequestBody @Valid CreateEquipmentRequest request,
+    public ResponseEntity createEquipmentWithFiles(@Valid @RequestBody CreateEquipmentRequest request,
                                                    @RequestPart(value = "files", required = false)List<MultipartFile> files){
         editEquipmentService.createEquipmentWithFiles(request, files);
         return new ResponseEntity(HttpStatus.OK);
     }
 
     @Operation(summary = "단건 수정 API")
-    @PutMapping("/equipmentId/equipmentVersion")
+    @PutMapping("/{equipmentId}/{equipmentVersion}")
     @CacheEvict(value = "equipment", allEntries = true)
     public ResponseEntity updateEquipment(@PathVariable("equipmentId") String equipmentId,
                                           @PathVariable("equipmentVersion") Integer equipmentVersion,
-                                          @RequestBody @Valid UpdateEquipmentRequest request){
+                                          @Valid @RequestBody UpdateEquipmentRequest request){
         editEquipmentService.updateEquipment(equipmentId, equipmentVersion, request);
         return new ResponseEntity(HttpStatus.OK);
     }
