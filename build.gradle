@@ -1,8 +1,8 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.12'
-	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
-	id 'org.asciidoctor.convert' version '1.5.8'
-	id 'java'
+    id 'org.springframework.boot' version '2.6.12'
+    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+    id 'org.asciidoctor.convert' version '1.5.8'
+    id 'java'
 }
 
 group = 'leezy-spring'
@@ -10,85 +10,93 @@ version = 'v0.1.1'
 sourceCompatibility = '11'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 ext {
-	set('snippetsDir', file("build/generated-snippets"))
+    set('snippetsDir', file("build/generated-snippets"))
 }
 
 print(dependencyManagement)
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-validation' // spring-boot v.2.3 이상부터 validation 의존성 따로 추가 필요
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot:3.0.1'
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-	implementation 'org.springframework.data:spring-data-rest-hal-explorer'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // spring-boot v.2.3 이상부터 validation 의존성 따로 추가 필요
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot:3.0.1'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.data:spring-data-rest-hal-explorer'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 //	implementation 'org.springframework.boot:spring-boot-starter-data-ldap'
 //	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.h2database:h2'
-	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 //	runtimeOnly 'mysql:mysql-connector-java'
-	annotationProcessor 'org.projectlombok:lombok'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-	testImplementation 'org.springframework.security:spring-security-test'
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'org.springframework.security:spring-security-test'
 
-	// queryDSL 설정
-	implementation "com.querydsl:querydsl-jpa"
-	implementation "com.querydsl:querydsl-core"
-	implementation "com.querydsl:querydsl-collections"
-	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa" // querydsl JPAAnnotationProcessor 사용 지정
-	annotationProcessor "jakarta.annotation:jakarta.annotation-api" // java.lang.NoClassDefFoundError (javax.annotation.Generated) 대응 코드
-	annotationProcessor "jakarta.persistence:jakarta.persistence-api" // java.lang.NoClassDefFoundError (javax.annotation.Entity) 대응 코드
+    // queryDSL 설정
+    implementation "com.querydsl:querydsl-jpa"
+    implementation "com.querydsl:querydsl-core"
+    implementation "com.querydsl:querydsl-collections"
+    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
+    // querydsl JPAAnnotationProcessor 사용 지정
+    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+    // java.lang.NoClassDefFoundError (javax.annotation.Generated) 대응 코드
+    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+    // java.lang.NoClassDefFoundError (javax.annotation.Entity) 대응 코드
 
-	// CMS
-	implementation files('libs/java-rest-capi-1.0.0.jar')
+    // CMS
+    implementation files('libs/java-rest-capi-1.0.0.jar')
 
-	// OkHttp
-	implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
 
-	// Cache
-	implementation 'org.springframework.boot:spring-boot-starter-cache'
+    // Cache
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
 
-	// shedlock-spring
-	implementation group: 'net.javacrumbs.shedlock', name: 'shedlock-spring', version: '4.44.0'
+    // shedlock-spring
+    implementation group: 'net.javacrumbs.shedlock', name: 'shedlock-spring', version: '4.44.0'
 
-	// decoding, encoding
-	implementation group: 'commons-codec', name: 'commons-codec', version: '1.9'
+    // decoding, encoding
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.9'
 
-	// Base64
-	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    // Base64
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 
-	// file
-	implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+    // file
+    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+
+    // h2
+//	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+//	runtimeOnly 'com.h2database:h2'
 }
 
 tasks.named('test') {
-	outputs.dir snippetsDir
-	useJUnitPlatform()
+    outputs.dir snippetsDir
+    useJUnitPlatform()
 }
 
 tasks.named('asciidoctor') {
-	inputs.dir snippetsDir
-	dependsOn test
+    inputs.dir snippetsDir
+    dependsOn test
 }
 
 
@@ -97,22 +105,22 @@ def generated = 'src/main/generated'
 
 // querydsl QClass 파일 생성 위치를 지정
 tasks.withType(JavaCompile) {
-	options.getGeneratedSourceOutputDirectory().set(file(generated))
+    options.getGeneratedSourceOutputDirectory().set(file(generated))
 }
 
 // java source set 에 querydsl QClass 위치 추가
 sourceSets {
-	main.java.srcDirs += [ generated ]
+    main.java.srcDirs += [generated]
 }
 
 // gradle clean 시에 QClass 디렉토리 삭제
 clean {
-	delete file(generated)
+    delete file(generated)
 }
 
 // Heroku 설정
 jar {
-	manifest {
-		attributes('Main-Class': 'em.EmSpringApplication')
-	}
+    manifest {
+        attributes('Main-Class': 'em.EmSpringApplication')
+    }
 }

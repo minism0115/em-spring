@@ -18,7 +18,7 @@ import java.io.Serializable;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"equipmentName", "version"})
+                @UniqueConstraint(columnNames = {"modelNameId", "version"})
         }
 )
 @IdClass(Equipment.EquipmentId.class)
@@ -32,7 +32,7 @@ public class Equipment extends AuditingFields implements Persistable<String> {
     @Id
     private int version;
 
-    private String equipmentName;
+    private String modelNameId;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -44,7 +44,7 @@ public class Equipment extends AuditingFields implements Persistable<String> {
     }
 
     public void update(UpdateEquipmentRequest request) {
-        this.equipmentName = request.getEquipmentName();
+        this.modelNameId = request.getEquipmentName();
     }
 
     @Override

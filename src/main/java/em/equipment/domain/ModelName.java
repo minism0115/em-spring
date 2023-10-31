@@ -14,15 +14,15 @@ import javax.persistence.Id;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class EquipmentName extends AuditingFields implements Persistable<String> {
+public class ModelName extends AuditingFields implements Persistable<String> {
 
     @Id
-    @Column(name = "equipment_name_id", columnDefinition = "VARCHAR2(36)")
+    @Column(name = "model_name_id", columnDefinition = "VARCHAR2(36)")
     @Comment("ID")
     private String id;
 
     @Comment("장비명")
-    private byte[] equipmentName;
+    private byte[] modelName;
 
     @Override
     public boolean isNew() {

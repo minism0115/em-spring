@@ -18,10 +18,11 @@ public class EquipmentResponse {
 
     private String companyName;
 
-    public EquipmentResponse(Equipment equipment){
+    public EquipmentResponse(Equipment equipment, String modelName){
         equipmentId = equipment.getId();
         version = equipment.getVersion();
-        equipmentName = equipment.getEquipmentName();
+        // TODO: EQUIPMENT_NAME 테이블에서 찾은 장비명 세팅
+        equipmentName = modelName;
 //        companyId = equipment.getCompany().getId();
 //        companyName = equipment.getCompany().getCompanyName();
     }

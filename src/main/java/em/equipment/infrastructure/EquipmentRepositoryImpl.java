@@ -24,10 +24,10 @@ public class EquipmentRepositoryImpl implements EquipmentRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
-    public Page<Equipment> findEquipments(String equipmentName, Pageable pageable) {
+    public Page<Equipment> findEquipments(List<String> modelNameIds, Pageable pageable) {
         JPAQuery<Equipment> query = queryFactory
                 .selectFrom(equipment)
-                .where(containsEquipmentName(equipmentName))
+                .where(inModelNameIds(modelNameIds))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize());
 
@@ -42,14 +42,14 @@ public class EquipmentRepositoryImpl implements EquipmentRepositoryCustom {
         JPAQuery<Long> countQuery = queryFactory
                 .select(equipment.count())
                 .from(equipment)
-                .where(containsEquipmentName(equipmentName));
+                .where(inModelNameIds(modelNameIds));
 
         return PageableExecutionUtils.getPage(result, pageable, countQuery::fetchOne);
     }
 
-    private BooleanExpression containsEquipmentName(String equipmentName){
-        if(equipmentName != null) {
-            return equipment.equipmentName.contains(equipmentName);
+    private BooleanExpression inModelNameIds(List<String> modelNameIds){
+        if(modelNameIds.size() > 0) {
+            return equipment.modelNameId.in(modelNameIds);
         } else {
             return null;
         }
