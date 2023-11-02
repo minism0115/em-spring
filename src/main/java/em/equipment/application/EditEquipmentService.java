@@ -2,11 +2,11 @@ package em.equipment.application;
 
 import em.company.infrastructure.CompanyRepository;
 import em.equipment.domain.Equipment;
-import em.equipment.domain.ModelName;
+import em.modelName.domain.ModelName;
 import em.equipment.dto.CreateEquipmentRequest;
-import em.equipment.dto.ModelNameResponse;
+import em.modelName.dto.ModelNameResponse;
 import em.equipment.dto.UpdateEquipmentRequest;
-import em.equipment.infrastructure.ModelNameRepository;
+import em.modelName.infrastructure.ModelNameRepository;
 import em.equipment.infrastructure.EquipmentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

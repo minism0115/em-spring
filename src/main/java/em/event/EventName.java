@@ -1,4 +1,4 @@
-package em.event.domain;
+package em.event;
 
 import lombok.Getter;
 

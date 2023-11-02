@@ -1,6 +1,7 @@
-package em.file;
+package em.file.domain;
 
 import em.common.AuditingFields;
+import em.file.ParentType;
 import lombok.*;
 import org.hibernate.annotations.Comment;
 

@@ -1,6 +1,7 @@
 package em.event.domain;
 
 import em.common.AuditingFields;
+import em.event.EventName;
 import lombok.*;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicInsert;

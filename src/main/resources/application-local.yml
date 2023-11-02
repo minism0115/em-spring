@@ -1,9 +1,18 @@
 spring:
-  datasource:
-    url: jdbc:h2:tcp://localhost/~/em
+  datasource-primary:
+    jdbc-url: jdbc:h2:mem:equipment;mode=oracle
     username: sa
     password:
     driver-class-name: org.h2.Driver
+  datasource-secondary:
+    jdbc-url: jdbc:h2:mem:modelName;mode=oracle
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
   jpa:
     hibernate:
       ddl-auto: create
@@ -26,4 +35,5 @@ file:
 logging.level:
   org.hibernate.SQL: debug
 # org.hibernate.type: trace
+
 

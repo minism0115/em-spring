@@ -2,11 +2,11 @@ package em.equipment.application;
 
 import em.equipment.domain.Equipment;
 import em.equipment.domain.Equipment.EquipmentId;
-import em.equipment.domain.ModelName;
+import em.modelName.domain.ModelName;
 import em.equipment.dto.EquipmentResponse;
-import em.equipment.dto.ModelNameResponse;
+import em.modelName.dto.ModelNameResponse;
 import em.equipment.infrastructure.EquipmentRepository;
-import em.equipment.infrastructure.ModelNameRepository;
+import em.modelName.infrastructure.ModelNameRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

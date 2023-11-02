@@ -1,6 +1,6 @@
-package em.equipment.dto;
+package em.modelName.dto;
 
-import em.equipment.domain.ModelName;
+import em.modelName.domain.ModelName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.codec.binary.Base64;

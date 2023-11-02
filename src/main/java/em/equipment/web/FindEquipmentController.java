@@ -2,7 +2,7 @@ package em.equipment.web;
 
 import em.equipment.application.FindEquipmentService;
 import em.equipment.dto.EquipmentResponse;
-import em.equipment.dto.ModelNameResponse;
+import em.modelName.dto.ModelNameResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

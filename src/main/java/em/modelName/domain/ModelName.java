@@ -1,4 +1,4 @@
-package em.equipment.domain;
+package em.modelName.domain;
 
 import em.common.AuditingFields;
 import lombok.*;

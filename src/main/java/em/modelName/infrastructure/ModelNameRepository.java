@@ -1,6 +1,6 @@
-package em.equipment.infrastructure;
+package em.modelName.infrastructure;
 
-import em.equipment.domain.ModelName;
+import em.modelName.domain.ModelName;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

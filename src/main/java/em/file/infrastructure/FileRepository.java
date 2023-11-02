@@ -1,5 +1,7 @@
-package em.file;
+package em.file.infrastructure;
 
+import em.file.domain.File;
+import em.file.ParentType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .antMatchers("/api/**").permitAll()
-                        .antMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        .antMatchers("/swagger-ui/**", "/v3/api-docs/**", "/h2-console/**").permitAll()
                         .mvcMatchers(
                                 HttpMethod.GET,
                                 "/",
@@ -38,6 +38,9 @@ public class SecurityConfig {
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
+                // h2-console 페이지를 띄우기 위한 설정
+                .headers().frameOptions().disable()
+                .and()
 //                .formLogin().and()
 //                .logout()
 //                .logoutSuccessUrl("/")
